@@ -1,0 +1,209 @@
+/* ═══════════════════════════════════════════
+   ONEAXIS RESPONSIVE DESIGN SYSTEM
+   Mobile-first + Desktop enhancement
+   ═══════════════════════════════════════════ */
+
+/* ─── Base Mobile Styles (< 640px) ─── */
+@media (max-width: 639px) {
+  /* Workspace: Collapsible sidebar */
+  .workspace-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .workspace-sidebar.open {
+    transform: translateX(0);
+  }
+  .workspace-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .workspace-sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Right panel: Bottom sheet */
+  .workspace-right-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60vh;
+    z-index: 45;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .workspace-right-panel.open {
+    transform: translateY(0);
+  }
+
+  /* Nav: Horizontal scroll */
+  .workspace-nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .workspace-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .workspace-nav button {
+    flex-shrink: 0;
+  }
+
+  /* Header: Compact */
+  .workspace-header {
+    padding: 0.5rem 0.75rem;
+  }
+  .workspace-header h1 {
+    font-size: 0.75rem;
+  }
+
+  /* Grid layouts → Stack */
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4,
+  .grid-cols-5,
+  .grid-cols-6 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tables: Card view */
+  .responsive-table thead {
+    display: none;
+  }
+  .responsive-table tr {
+    display: block;
+    margin-bottom: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(55, 65, 81, 0.5);
+    padding: 0.75rem;
+  }
+  .responsive-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border: none;
+  }
+  .responsive-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #9ca3af;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  /* Dashboard cards */
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Full-width buttons */
+  .btn-responsive {
+    width: 100%;
+  }
+
+  /* Reduced padding */
+  .p-responsive {
+    padding: 0.75rem !important;
+  }
+
+  /* Stack flex rows */
+  .flex-responsive {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* ─── Tablet Styles (640px - 1023px) ─── */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .workspace-sidebar {
+    width: 240px;
+  }
+  .grid-cols-4,
+  .grid-cols-5,
+  .grid-cols-6 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* ─── Desktop Styles (1024px+) ─── */
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* ─── Touch-friendly tap targets ─── */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ─── Smooth scrolling ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Animation utilities ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* ─── Reduced motion support ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import './styles/responsive.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════
+   ONEAXIS DESIGN TOKENS
+   ═══════════════════════════════════════════ */
+@layer base {
+  :root {
+    /* Brand Colours */
+    --void: #0A0A0A;
+    --surface: #141414;
+    --raised: #1E1E1E;
+    --chalk: #F4F1EC;
+    --mist: #8C8278;
+    --axis: #C8B89A;
+    --axis-deep: #A89478;
+    --ok: #5B9A6B;
+    --warn: #C98A3E;
+    --danger: #B5544A;
+
+    /* shadcn/ui overrides */
+    --background: 0 0% 4%;
+    --foreground: 36 20% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 36 20% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 36 20% 95%;
+    --primary: 36 30% 70%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 36 20% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 220 90% 56%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 10% 18%;
+    --input: 220 10% 18%;
+    --ring: 220 90% 56%;
+    --radius: 0.5rem;
+    --sidebar-background: 220 15% 5%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 220 90% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 220 10% 15%;
+    --sidebar-ring: 220 90% 56%;
+
+    --oneaxis-blue: 220 90% 56%;
+    --oneaxis-cyan: 190 100% 50%;
+    --oneaxis-purple: 260 80% 60%;
+    --oneaxis-glow: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .oneaxis-glow {
+    box-shadow: 0 0 20px hsl(var(--oneaxis-blue) / 0.3),
+                0 0 60px hsl(var(--oneaxis-blue) / 0.1);
+  }
+  
+  .oneaxis-glow-strong {
+    box-shadow: 0 0 30px hsl(var(--oneaxis-blue) / 0.5),
+                0 0 90px hsl(var(--oneaxis-blue) / 0.2);
+  }
+  
+  .glass-panel {
+    background: hsl(220 15% 7% / 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(220 10% 20%);
+  }
+  
+  .glass-panel-light {
+    background: hsl(220 15% 10% / 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(220 10% 20%);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(220 90% 70%), hsl(190 100% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(220 90% 56%), hsl(190 100% 50%));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  
+  .status-available { background-color: #10b981; }
+  .status-sold { background-color: #6b7280; }
+  .status-reserved { background-color: #f59e0b; }
+  .status-coming-soon { background-color: #3b82f6; }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(220 10% 25%) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(220 10% 25%);
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
